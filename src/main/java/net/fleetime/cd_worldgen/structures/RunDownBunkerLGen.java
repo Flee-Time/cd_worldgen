@@ -35,7 +35,7 @@ public class RunDownBunkerLGen extends Structure<NoFeatureConfig> {
      */
     @Override
     public  IStartFactory<NoFeatureConfig> getStartFactory() {
-        return RunDownBunker.Start::new;
+        return RunDownBunkerLGen.Start::new;
     }
 
 

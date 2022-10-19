@@ -67,10 +67,10 @@ public class cd_worldgen {
         });
 
         if(OptionsHolder.COMMON.LGEN.get()) { 
-            LOGGER.log(Level.DEBUG, "cd_worldgen set to create loot generators.");
+            LOGGER.log(Level.INFO, "cd_worldgen set to create loot generators.");
         }
         else {
-            LOGGER.log(Level.DEBUG, "cd_worldgen set to create one time loot.");
+            LOGGER.log(Level.INFO, "cd_worldgen set to create one time loot.");
         }
     }
 
@@ -97,14 +97,12 @@ public class cd_worldgen {
             event.getGeneration().getStructures().add(() -> STConfiguredStructures.CONFIGURED_RUN_DOWN_BUNKER_LGEN);
             event.getGeneration().getStructures().add(() -> STConfiguredStructures.CONFIGURED_RUN_DOWN_HOUSE_LGEN);
             event.getGeneration().getStructures().add(() -> STConfiguredStructures.CONFIGURED_RUN_DOWN_TOWER_LGEN);
-            LOGGER.log(Level.DEBUG, "cd_worldgen set to create loot generators.");
         }
         else {
             event.getGeneration().getStructures().add(() -> STConfiguredStructures.CONFIGURED_RUN_DOWN_BASE);
             event.getGeneration().getStructures().add(() -> STConfiguredStructures.CONFIGURED_RUN_DOWN_BUNKER);
             event.getGeneration().getStructures().add(() -> STConfiguredStructures.CONFIGURED_RUN_DOWN_HOUSE);
             event.getGeneration().getStructures().add(() -> STConfiguredStructures.CONFIGURED_RUN_DOWN_TOWER);
-            LOGGER.log(Level.DEBUG, "cd_worldgen set to create one time loot.");
         }
     }
 

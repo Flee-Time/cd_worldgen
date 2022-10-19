@@ -35,7 +35,7 @@ public class RunDownHouseLGen extends Structure<NoFeatureConfig> {
      */
     @Override
     public  IStartFactory<NoFeatureConfig> getStartFactory() {
-        return RunDownHouse.Start::new;
+        return RunDownHouseLGen.Start::new;
     }
 
 

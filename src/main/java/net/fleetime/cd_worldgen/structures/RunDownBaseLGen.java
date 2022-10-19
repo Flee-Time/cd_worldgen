@@ -35,7 +35,7 @@ public class RunDownBaseLGen extends Structure<NoFeatureConfig> {
      */
     @Override
     public  IStartFactory<NoFeatureConfig> getStartFactory() {
-        return RunDownBase.Start::new;
+        return RunDownBaseLGen.Start::new;
     }
 
 
