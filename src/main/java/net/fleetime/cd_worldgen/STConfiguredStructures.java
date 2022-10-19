@@ -33,10 +33,10 @@ public class STConfiguredStructures {
         Registry.register(registry, new ResourceLocation(cd_worldgen.MODID, "configured_run_down_bunker"), CONFIGURED_RUN_DOWN_BUNKER);
         Registry.register(registry, new ResourceLocation(cd_worldgen.MODID, "configured_run_down_house"), CONFIGURED_RUN_DOWN_HOUSE);
         Registry.register(registry, new ResourceLocation(cd_worldgen.MODID, "configured_run_down_tower"), CONFIGURED_RUN_DOWN_TOWER);
-        Registry.register(registry, new ResourceLocation(cd_worldgen.MODID, "configured_run_down_base_lgen"), CONFIGURED_RUN_DOWN_BASE);
-        Registry.register(registry, new ResourceLocation(cd_worldgen.MODID, "configured_run_down_bunker_lgen"), CONFIGURED_RUN_DOWN_BUNKER);
-        Registry.register(registry, new ResourceLocation(cd_worldgen.MODID, "configured_run_down_house_lgen"), CONFIGURED_RUN_DOWN_HOUSE);
-        Registry.register(registry, new ResourceLocation(cd_worldgen.MODID, "configured_run_down_tower_lgen"), CONFIGURED_RUN_DOWN_TOWER);
+        Registry.register(registry, new ResourceLocation(cd_worldgen.MODID, "configured_run_down_base_lgen"), CONFIGURED_RUN_DOWN_BASE_LGEN);
+        Registry.register(registry, new ResourceLocation(cd_worldgen.MODID, "configured_run_down_bunker_lgen"), CONFIGURED_RUN_DOWN_BUNKER_LGEN);
+        Registry.register(registry, new ResourceLocation(cd_worldgen.MODID, "configured_run_down_house_lgen"), CONFIGURED_RUN_DOWN_HOUSE_LGEN);
+        Registry.register(registry, new ResourceLocation(cd_worldgen.MODID, "configured_run_down_tower_lgen"), CONFIGURED_RUN_DOWN_TOWER_LGEN);
 
         /* Ok so, this part may be hard to grasp but basically, just add your structure to this to
         * prevent any sort of crash or issue with other mod's custom ChunkGenerators. If they use
