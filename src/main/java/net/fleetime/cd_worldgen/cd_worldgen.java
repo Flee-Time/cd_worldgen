@@ -10,18 +10,20 @@ import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.settings.DimensionStructuresSettings;
 import net.minecraft.world.gen.settings.StructureSeparationSettings;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
+import org.apache.logging.log4j.Level;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
@@ -44,6 +46,8 @@ public class cd_worldgen {
 
         // The comments for BiomeLoadingEvent and StructureSpawnListGatherEvent says to do HIGH for additions.
         forgeBus.addListener(EventPriority.HIGH, this::biomeModification);
+
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, OptionsHolder.COMMON_SPEC); 
     }
 
     /**
@@ -61,6 +65,13 @@ public class cd_worldgen {
             STStructures.setupStructures();
             STConfiguredStructures.registerConfiguredStructures();
         });
+
+        if(OptionsHolder.COMMON.LGEN.get()) { 
+            LOGGER.log(Level.DEBUG, "cd_worldgen set to create loot generators.");
+        }
+        else {
+            LOGGER.log(Level.DEBUG, "cd_worldgen set to create one time loot.");
+        }
     }
 
 
@@ -81,10 +92,18 @@ public class cd_worldgen {
          * RegistryKey.getOrCreateKey(Registry.BIOME_KEY, event.getName()) to get the biome's
          * registrykey. Then that can be fed into the dictionary to get the biome's types.
          */
-        event.getGeneration().getStructures().add(() -> STConfiguredStructures.CONFIGURED_RUN_DOWN_BASE);
-        event.getGeneration().getStructures().add(() -> STConfiguredStructures.CONFIGURED_RUN_DOWN_BUNKER);
-        event.getGeneration().getStructures().add(() -> STConfiguredStructures.CONFIGURED_RUN_DOWN_HOUSE);
-        event.getGeneration().getStructures().add(() -> STConfiguredStructures.CONFIGURED_RUN_DOWN_TOWER);
+        if(!OptionsHolder.COMMON.LGEN.get()) {
+            event.getGeneration().getStructures().add(() -> STConfiguredStructures.CONFIGURED_RUN_DOWN_BASE);
+            event.getGeneration().getStructures().add(() -> STConfiguredStructures.CONFIGURED_RUN_DOWN_BUNKER);
+            event.getGeneration().getStructures().add(() -> STConfiguredStructures.CONFIGURED_RUN_DOWN_HOUSE);
+            event.getGeneration().getStructures().add(() -> STConfiguredStructures.CONFIGURED_RUN_DOWN_TOWER);
+        }
+        else {
+            event.getGeneration().getStructures().add(() -> STConfiguredStructures.CONFIGURED_RUN_DOWN_BASE_LGEN);
+            event.getGeneration().getStructures().add(() -> STConfiguredStructures.CONFIGURED_RUN_DOWN_BUNKER_LGEN);
+            event.getGeneration().getStructures().add(() -> STConfiguredStructures.CONFIGURED_RUN_DOWN_HOUSE_LGEN);
+            event.getGeneration().getStructures().add(() -> STConfiguredStructures.CONFIGURED_RUN_DOWN_TOWER_LGEN);
+        }
     }
 
     /**
@@ -140,6 +159,10 @@ public class cd_worldgen {
             tempMap.putIfAbsent(STStructures.RUN_DOWN_BUNKER.get(), DimensionStructuresSettings.DEFAULTS.get(STStructures.RUN_DOWN_BUNKER.get()));
             tempMap.putIfAbsent(STStructures.RUN_DOWN_HOUSE.get(), DimensionStructuresSettings.DEFAULTS.get(STStructures.RUN_DOWN_HOUSE.get()));
             tempMap.putIfAbsent(STStructures.RUN_DOWN_TOWER.get(), DimensionStructuresSettings.DEFAULTS.get(STStructures.RUN_DOWN_TOWER.get()));
+            tempMap.putIfAbsent(STStructures.RUN_DOWN_BASE_LGEN.get(), DimensionStructuresSettings.DEFAULTS.get(STStructures.RUN_DOWN_BASE_LGEN.get()));
+            tempMap.putIfAbsent(STStructures.RUN_DOWN_BUNKER_LGEN.get(), DimensionStructuresSettings.DEFAULTS.get(STStructures.RUN_DOWN_BUNKER_LGEN.get()));
+            tempMap.putIfAbsent(STStructures.RUN_DOWN_HOUSE_LGEN.get(), DimensionStructuresSettings.DEFAULTS.get(STStructures.RUN_DOWN_HOUSE_LGEN.get()));
+            tempMap.putIfAbsent(STStructures.RUN_DOWN_TOWER_LGEN.get(), DimensionStructuresSettings.DEFAULTS.get(STStructures.RUN_DOWN_TOWER_LGEN.get()));
             serverWorld.getChunkSource().generator.getSettings().structureConfig = tempMap;
         }
    }

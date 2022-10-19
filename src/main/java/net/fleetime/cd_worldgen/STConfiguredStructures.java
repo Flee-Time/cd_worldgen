@@ -15,6 +15,10 @@ public class STConfiguredStructures {
     public static StructureFeature<?, ?> CONFIGURED_RUN_DOWN_BUNKER = STStructures.RUN_DOWN_BUNKER.get().configured(IFeatureConfig.NONE);
     public static StructureFeature<?, ?> CONFIGURED_RUN_DOWN_HOUSE = STStructures.RUN_DOWN_HOUSE.get().configured(IFeatureConfig.NONE);
     public static StructureFeature<?, ?> CONFIGURED_RUN_DOWN_TOWER = STStructures.RUN_DOWN_TOWER.get().configured(IFeatureConfig.NONE);
+    public static StructureFeature<?, ?> CONFIGURED_RUN_DOWN_BASE_LGEN = STStructures.RUN_DOWN_BASE_LGEN.get().configured(IFeatureConfig.NONE);
+    public static StructureFeature<?, ?> CONFIGURED_RUN_DOWN_BUNKER_LGEN = STStructures.RUN_DOWN_BUNKER_LGEN.get().configured(IFeatureConfig.NONE);
+    public static StructureFeature<?, ?> CONFIGURED_RUN_DOWN_HOUSE_LGEN = STStructures.RUN_DOWN_HOUSE_LGEN.get().configured(IFeatureConfig.NONE);
+    public static StructureFeature<?, ?> CONFIGURED_RUN_DOWN_TOWER_LGEN = STStructures.RUN_DOWN_TOWER_LGEN.get().configured(IFeatureConfig.NONE);
 
     /**
      * Registers the configured structure which is what gets added to the biomes.
@@ -29,6 +33,10 @@ public class STConfiguredStructures {
         Registry.register(registry, new ResourceLocation(cd_worldgen.MODID, "configured_run_down_bunker"), CONFIGURED_RUN_DOWN_BUNKER);
         Registry.register(registry, new ResourceLocation(cd_worldgen.MODID, "configured_run_down_house"), CONFIGURED_RUN_DOWN_HOUSE);
         Registry.register(registry, new ResourceLocation(cd_worldgen.MODID, "configured_run_down_tower"), CONFIGURED_RUN_DOWN_TOWER);
+        Registry.register(registry, new ResourceLocation(cd_worldgen.MODID, "configured_run_down_base_lgen"), CONFIGURED_RUN_DOWN_BASE);
+        Registry.register(registry, new ResourceLocation(cd_worldgen.MODID, "configured_run_down_bunker_lgen"), CONFIGURED_RUN_DOWN_BUNKER);
+        Registry.register(registry, new ResourceLocation(cd_worldgen.MODID, "configured_run_down_house_lgen"), CONFIGURED_RUN_DOWN_HOUSE);
+        Registry.register(registry, new ResourceLocation(cd_worldgen.MODID, "configured_run_down_tower_lgen"), CONFIGURED_RUN_DOWN_TOWER);
 
         /* Ok so, this part may be hard to grasp but basically, just add your structure to this to
         * prevent any sort of crash or issue with other mod's custom ChunkGenerators. If they use
@@ -49,5 +57,9 @@ public class STConfiguredStructures {
         FlatGenerationSettings.STRUCTURE_FEATURES.put(STStructures.RUN_DOWN_BUNKER.get(), CONFIGURED_RUN_DOWN_BUNKER);
         FlatGenerationSettings.STRUCTURE_FEATURES.put(STStructures.RUN_DOWN_HOUSE.get(), CONFIGURED_RUN_DOWN_HOUSE);
         FlatGenerationSettings.STRUCTURE_FEATURES.put(STStructures.RUN_DOWN_TOWER.get(), CONFIGURED_RUN_DOWN_TOWER);
+        FlatGenerationSettings.STRUCTURE_FEATURES.put(STStructures.RUN_DOWN_BASE_LGEN.get(), CONFIGURED_RUN_DOWN_BASE_LGEN);
+        FlatGenerationSettings.STRUCTURE_FEATURES.put(STStructures.RUN_DOWN_BUNKER_LGEN.get(), CONFIGURED_RUN_DOWN_BUNKER_LGEN);
+        FlatGenerationSettings.STRUCTURE_FEATURES.put(STStructures.RUN_DOWN_HOUSE_LGEN.get(), CONFIGURED_RUN_DOWN_HOUSE_LGEN);
+        FlatGenerationSettings.STRUCTURE_FEATURES.put(STStructures.RUN_DOWN_TOWER_LGEN.get(), CONFIGURED_RUN_DOWN_TOWER_LGEN);
     }
 }

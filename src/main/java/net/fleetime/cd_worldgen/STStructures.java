@@ -3,9 +3,13 @@ package net.fleetime.cd_worldgen;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import net.fleetime.cd_worldgen.structures.RunDownBase;
+import net.fleetime.cd_worldgen.structures.RunDownBaseLGen;
 import net.fleetime.cd_worldgen.structures.RunDownBunker;
+import net.fleetime.cd_worldgen.structures.RunDownBunkerLGen;
 import net.fleetime.cd_worldgen.structures.RunDownHouse;
+import net.fleetime.cd_worldgen.structures.RunDownHouseLGen;
 import net.fleetime.cd_worldgen.structures.RunDownTower;
+import net.fleetime.cd_worldgen.structures.RunDownTowerLGen;
 import net.minecraft.util.registry.WorldGenRegistries;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
@@ -49,6 +53,11 @@ public class STStructures {
     public static final RegistryObject<Structure<NoFeatureConfig>> RUN_DOWN_BUNKER = DEFERRED_REGISTRY_STRUCTURE.register("run_down_bunker", () -> (new RunDownBunker(NoFeatureConfig.CODEC)));
     public static final RegistryObject<Structure<NoFeatureConfig>> RUN_DOWN_HOUSE = DEFERRED_REGISTRY_STRUCTURE.register("run_down_house", () -> (new RunDownHouse(NoFeatureConfig.CODEC)));
     public static final RegistryObject<Structure<NoFeatureConfig>> RUN_DOWN_TOWER = DEFERRED_REGISTRY_STRUCTURE.register("run_down_tower", () -> (new RunDownTower(NoFeatureConfig.CODEC)));
+    public static final RegistryObject<Structure<NoFeatureConfig>> RUN_DOWN_BASE_LGEN = DEFERRED_REGISTRY_STRUCTURE.register("run_down_base_lgen", () -> (new RunDownBaseLGen(NoFeatureConfig.CODEC)));
+    public static final RegistryObject<Structure<NoFeatureConfig>> RUN_DOWN_BUNKER_LGEN = DEFERRED_REGISTRY_STRUCTURE.register("run_down_bunker_lgen", () -> (new RunDownBunkerLGen(NoFeatureConfig.CODEC)));
+    public static final RegistryObject<Structure<NoFeatureConfig>> RUN_DOWN_HOUSE_LGEN = DEFERRED_REGISTRY_STRUCTURE.register("run_down_house_lgen", () -> (new RunDownHouseLGen(NoFeatureConfig.CODEC)));
+    public static final RegistryObject<Structure<NoFeatureConfig>> RUN_DOWN_TOWER_LGEN = DEFERRED_REGISTRY_STRUCTURE.register("run_down_tower_lgen", () -> (new RunDownTowerLGen(NoFeatureConfig.CODEC)));
+
 
     /**
      * This is where we set the rarity of your structures and determine if land conforms to it.
@@ -57,32 +66,59 @@ public class STStructures {
     public static void setupStructures() {
         setupMapSpacingAndLand(
                 RUN_DOWN_BASE.get(), /* The instance of the structure */
-                new StructureSeparationSettings(25 /* average distance apart in chunks between spawn attempts */,
-                        15 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
+                new StructureSeparationSettings(OptionsHolder.COMMON.base_avgDist.get() /* average distance apart in chunks between spawn attempts */,
+                        OptionsHolder.COMMON.base_minDist.get() /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
                         1324657950 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
                 true);
 
         setupMapSpacingAndLand(
                 RUN_DOWN_BUNKER.get(), /* The instance of the structure */
-                new StructureSeparationSettings(15 /* average distance apart in chunks between spawn attempts */,
-                        5 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
+                new StructureSeparationSettings(OptionsHolder.COMMON.bunker_avgDist.get() /* average distance apart in chunks between spawn attempts */,
+                        OptionsHolder.COMMON.bunker_minDist.get() /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
                         1234121290 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
                 true);        
 
         setupMapSpacingAndLand(
                 RUN_DOWN_HOUSE.get(), /* The instance of the structure */
-                new StructureSeparationSettings(20 /* average distance apart in chunks between spawn attempts */,
-                        10 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
+                new StructureSeparationSettings(OptionsHolder.COMMON.house_avgDist.get() /* average distance apart in chunks between spawn attempts */,
+                        OptionsHolder.COMMON.house_minDist.get() /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
                         1214125290 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
                 true);
 
         setupMapSpacingAndLand(
                 RUN_DOWN_TOWER.get(), /* The instance of the structure */
-                new StructureSeparationSettings(20 /* average distance apart in chunks between spawn attempts */,
-                        10 /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
+                new StructureSeparationSettings(OptionsHolder.COMMON.tower_avgDist.get() /* average distance apart in chunks between spawn attempts */,
+                        OptionsHolder.COMMON.tower_minDist.get() /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
                         1754121590 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
                 true);
 
+        setupMapSpacingAndLand(
+                RUN_DOWN_BASE_LGEN.get(), /* The instance of the structure */
+                new StructureSeparationSettings(OptionsHolder.COMMON.base_avgDist.get() /* average distance apart in chunks between spawn attempts */,
+                        OptionsHolder.COMMON.base_minDist.get() /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
+                        1324657950 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
+                true);
+
+        setupMapSpacingAndLand(
+                RUN_DOWN_BUNKER_LGEN.get(), /* The instance of the structure */
+                new StructureSeparationSettings(OptionsHolder.COMMON.bunker_avgDist.get() /* average distance apart in chunks between spawn attempts */,
+                        OptionsHolder.COMMON.bunker_minDist.get() /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
+                        1234121290 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
+                true);        
+
+        setupMapSpacingAndLand(
+                RUN_DOWN_HOUSE_LGEN.get(), /* The instance of the structure */
+                new StructureSeparationSettings(OptionsHolder.COMMON.house_avgDist.get() /* average distance apart in chunks between spawn attempts */,
+                        OptionsHolder.COMMON.house_minDist.get() /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
+                        1214125290 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
+                true);
+
+        setupMapSpacingAndLand(
+                RUN_DOWN_TOWER_LGEN.get(), /* The instance of the structure */
+                new StructureSeparationSettings(OptionsHolder.COMMON.tower_avgDist.get() /* average distance apart in chunks between spawn attempts */,
+                        OptionsHolder.COMMON.tower_minDist.get() /* minimum distance apart in chunks between spawn attempts. MUST BE LESS THAN ABOVE VALUE*/,
+                        1754121590 /* this modifies the seed of the structure so no two structures always spawn over each-other. Make this large and unique. */),
+                true);
         // Add more structures here and so on
     }
 
